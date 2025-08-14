@@ -14,11 +14,12 @@ export async function GET(req: NextRequest) {
 
     const existingUser = await prisma.user.findUnique({
       where: { id: token.id },
-      select: {
+      include: {
         blogs: {
           select: {
             title: true,
             content: true,
+            likes: true,
           },
         },
       },

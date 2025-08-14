@@ -1,0 +1,75 @@
+import { prisma } from "@/lib/DB";
+import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from "next/server";
+import z from "zod";
+const Blogschema = z.object({
+  title: z.string().min(3).max(50),
+  content: z.string(),
+});
+export async function POST(req: NextRequest) {
+  try {
+    const data = await req.json();
+    const parsedBody = Blogschema.safeParse(data);
+
+    if (!parsedBody.success) {
+      return NextResponse.json(
+        { success: false, error: parsedBody.error.format() },
+        { status: 400 }
+      );
+    }
+
+    const { title, content } = parsedBody.data;
+
+    const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
+
+    if (!token) {
+      return NextResponse.json(
+        { success: false, error: "token not found" },
+        { status: 400 }
+      );
+    }
+
+    const existUser = await prisma.user.findFirst({
+      where: {
+        id: token.id,
+      },
+    });
+
+    if (!existUser) {
+      return NextResponse.json(
+        { success: false, error: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    await prisma.blog.create({
+      data: {
+        title: title,
+        content: content,
+        authorId: token.id,
+      },
+    });
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Blog created successfully",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: error.message,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+  }
+}
