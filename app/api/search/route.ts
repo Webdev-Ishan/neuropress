@@ -2,15 +2,14 @@ import { prisma } from "@/lib/DB";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
     const data = await req.json();
-    const blogId = data.blogId;
-
-    if (!token || !blogId) {
+    const query = data;
+    if (!token) {
       return NextResponse.json(
-        { success: false, error: "token or blogID not found" },
+        { success: false, error: "token not found" },
         { status: 400 }
       );
     }
@@ -28,16 +27,18 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const blog = await prisma.blog.findUnique({
+    const blogs = await prisma.blog.findMany({
       where: {
-        id: blogId,
+        title: {
+          contains: query,
+        },
       },
     });
 
     return NextResponse.json(
       {
         success: true,
-        blog,
+        blogs,
       },
       {
         status: 200,

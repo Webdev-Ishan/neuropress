@@ -5,6 +5,7 @@ import z from "zod";
 const Blogschema = z.object({
   title: z.string().min(3).max(50),
   content: z.string(),
+  blogId: z.string().optional(),
 });
 export async function POST(req: NextRequest) {
   try {
@@ -39,6 +40,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { success: false, error: "User not found" },
         { status: 404 }
+      );
+    }
+
+    const existBlog = await prisma.blog.findFirst({
+      where: {
+        title: title,
+        content: content,
+        authorId: existUser.id,
+      },
+    });
+
+    if (existBlog) {
+      return NextResponse.json(
+        { success: false, error: "Blog already exists." },
+        { status: 409 }
       );
     }
 
@@ -86,7 +102,7 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    const { title, content } = parsedBody.data;
+    const { title, content, blogId } = parsedBody.data;
 
     const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
 
@@ -112,9 +128,7 @@ export async function PUT(req: NextRequest) {
 
     const existBlog = await prisma.blog.findFirst({
       where: {
-        title: title,
-        content: content,
-        authorId: token.id,
+        id: blogId,
       },
     });
 
@@ -202,6 +216,7 @@ export async function DELETE(req: NextRequest) {
     await prisma.blog.delete({
       where: {
         id: blogId,
+        authorId: existUser.id,
       },
     });
 
