@@ -18,41 +18,41 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed w-full z-50  backdrop-blur-md border-b border-gray-200" >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
+    <nav className="fixed w-full z-50 bg-white  backdrop-blur-md border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
         {/* Logo */}
         <div
           onClick={() => router.push("/")}
           className="flex items-center space-x-2 cursor-pointer"
         >
-          <Notebook className="w-7 h-7 text-[#0594FA]" />
-          <span className="text-2xl font-bold text-[#0594FA]">NeuroPress</span>
+          <Notebook className="w-7 h-7 text-red-500" />
+          <span className="text-2xl font-bold text-black ">NeuroPress</span>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center justify-center space-x-8">
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={() => router.push(link.path)}
-              className="text-[#0594FA] hover:text-black transition-colors"
+              className="text-black hover:text-red-500 font-semibold cursor-pointer transition-colors"
             >
               {link.name}
             </button>
           ))}
-          <button
-            onClick={() => router.push("/Signin")}
-            className="bg-[#0594FA] text-white px-6 py-2 rounded-lg hover:shadow-md hover:shadow-blue-600 transition-all duration-300"
-          >
-            Login
-          </button>
         </div>
+
+        <button
+          onClick={() => router.push("/Signin")}
+          className="bg-red-500 hidden md:block text-white px-6 py-2 rounded-lg cursor-pointer hover:shadow-sm hover:shadow-red-600 transition-all duration-300"
+        >
+          Login
+        </button>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+          className="md:hidden p-2 rounded-lg text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -60,7 +60,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
+        className={`md:hidden transition-all cursor-pointer duration-300 overflow-hidden ${
           isOpen ? "max-h-96" : "max-h-0"
         }`}
       >
@@ -70,7 +70,7 @@ export default function Navbar() {
               <Link
                 href={link.path}
                 onClick={() => setIsOpen(false)}
-                className="block text-[#0594FA] hover:text-blue-700 transition-colors"
+                className="block text-black hover:text-blue-700 transition-colors"
               >
                 {link.name}
               </Link>
@@ -80,7 +80,7 @@ export default function Navbar() {
             <Link
               href="/Signin"
               onClick={() => setIsOpen(false)}
-              className="block w-full bg-[#0594FA] text-white text-center px-4 py-2 rounded-lg hover:shadow-md hover:shadow-blue-600 transition-all duration-300"
+              className="block w-full bg-red-500 text-white text-center px-4 py-2 rounded-lg hover:shadow-md hover:shadow-blue-600 transition-all duration-300"
             >
               Login
             </Link>
