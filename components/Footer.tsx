@@ -1,8 +1,7 @@
 "use client";
 
-
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Github } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -23,17 +22,54 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row gap-12 justify-center">
             <div className="flex flex-col gap-2 text-center sm:text-left">
               <h2 className="text-lg font-semibold text-red-700">Company</h2>
-              <Link href="/" className="hover:text-red-700 transition-colors">Home</Link>
-              <Link href="/About" className="hover:text-red-700 transition-colors">About</Link>
-              <Link href="/Pricing" className="hover:text-red-700 transition-colors">Pricing</Link>
-              <Link href="/Contact" className="hover:text-red-700 transition-colors">Contact</Link>
+              <Link href="/" className="hover:text-red-700 transition-colors">
+                Home
+              </Link>
+              <Link
+                href="/About"
+                className="hover:text-red-700 transition-colors"
+              >
+                About
+              </Link>
+              <Link
+                href="/Pricing"
+                className="hover:text-red-700 transition-colors"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/Contact"
+                className="hover:text-red-700 transition-colors"
+              >
+                Contact
+              </Link>
             </div>
             <div className="md:flex flex-col hidden  gap-2 text-center sm:text-left">
               <h2 className="text-lg font-semibold text-red-700">Resources</h2>
-              <Link href="/Blog" className="hover:text-red-700 transition-colors">Blog</Link>
-              <Link href="/Help" className="hover:text-red-700 transition-colors">Help Center</Link>
-              <Link href="/Privacy" className="hover:text-red-700 transition-colors">Privacy Policy</Link>
-              <Link href="/Terms" className="hover:text-red-700 transition-colors">Terms of Service</Link>
+              <Link
+                href="/Blog"
+                className="hover:text-red-700 transition-colors"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/Help"
+                className="hover:text-red-700 transition-colors"
+              >
+                Help Center
+              </Link>
+              <Link
+                href="/Privacy"
+                className="hover:text-red-700 transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/Terms"
+                className="hover:text-red-700 transition-colors"
+              >
+                Terms of Service
+              </Link>
             </div>
           </div>
 
@@ -41,16 +77,28 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-end gap-4">
             <h2 className="text-lg font-semibold text-red-700">Follow Us</h2>
             <div className="flex gap-4">
-              <Link href="#" className="text-gray-700 hover:text-red-700 transition-colors">
+              <Link
+                href="https://www.facebook.com/profile.php?id=61579177420804"
+                className="text-gray-700 hover:text-red-700 transition-colors"
+              >
                 <Facebook className="w-6 h-6" />
               </Link>
-              <Link href="#" className="text-gray-700 hover:text-red-700 transition-colors">
+              <Link
+                href="https://x.com/saini_isha57790"
+                className="text-gray-700 hover:text-red-700 transition-colors"
+              >
                 <Twitter className="w-6 h-6" />
               </Link>
-              <Link href="#" className="text-gray-700 hover:text-red-700 transition-colors">
-                <Instagram className="w-6 h-6" />
+              <Link
+                href="https://www.linkedin.com/in/ishan-saini-49b6842a6/"
+                className="text-gray-700 hover:text-red-700 transition-colors"
+              >
+                <Linkedin className="w-6 h-6" />
               </Link>
-              <Link href="#" className="text-gray-700 hover:text-red-700 transition-colors">
+              <Link
+                href="https://github.com/Webdev-Ishan"
+                className="text-gray-700 hover:text-red-700 transition-colors"
+              >
                 <Github className="w-6 h-6" />
               </Link>
             </div>

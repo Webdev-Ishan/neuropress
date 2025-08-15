@@ -59,11 +59,47 @@ export default function Home() {
           </div>
         </div>
       </header>
+      <section className="py-12 px-4 sm:px-8 md:px-16 flex flex-col-reverse md:flex-row items-center">
+        <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-700 mb-4">
+            Share Your Ideas, Reach the World
+          </h2>
+          <p className="text-gray-700 text-lg sm:text-xl md:text-lg lg:text-xl max-w-lg">
+            NeuroPress lets you write, organize, and explore blogs effortlessly.
+            Create content, connect with readers, and keep your stories alive.
+          </p>
+          <div className="mt-6 flex justify-center md:justify-start gap-4">
+            <button
+              onClick={() => router.push("/Register")}
+              className="bg-red-700 cursor-pointer text-white px-6 py-3 rounded-lg hover:bg-red-600 transition font-semibold"
+            >
+              Get Started
+            </button>
+            <button
+              onClick={() => router.push("/About")}
+              className="border cursor-pointer border-red-700 text-red-700 px-6 py-3 rounded-lg hover:bg-red-200 transition font-semibold"
+            >
+              Learn More
+            </button>
+          </div>
+        </div>
 
-      <section className="py-8 sm:py-12 md:py-16 px-4 text-center bg-black">
+        {/* Right SVG Image */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+          <Image
+            src="https://www.creative-tim.com/twcomponents/svg/website-designer-bro-purple.svg"
+            width={50}
+            height={50}
+            alt="Tailwind CSS Components"
+            className="w-full h-auto max-w-md rounded-2xl text-red-500 cursor-pointer"
+          />
+        </div>
+      </section>
+
+      <section className="py-8 sm:py-12 md:py-16 px-4 text-center ">
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
-          <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-white leading-snug">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-700 mb-4">
             Highlights
           </h1>
           <Image
