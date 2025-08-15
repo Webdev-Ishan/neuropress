@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-type backendresponse = {
-  success: boolean;
-  message: string;
-};
+import { signIn, useSession } from "next-auth/react";
 
 export default function SignUp() {
   const router = useRouter();
+  const { data: session, status } = useSession();
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/Profile");
+    }
+  }, [session, status, router]);
 
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -26,23 +27,15 @@ export default function SignUp() {
     e.preventDefault();
 
     try {
-      const response = await axios.post<backendresponse>(
-        "/api/auth/register",
-        {
-          username,
-          email,
-          password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect:false
+      });
 
-      if (response.data.success) {
+      if (response?.ok) {
         router.push("/");
-        toast.success("Regsitration Successfull");
+        toast.success("Login Successfull");
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -64,7 +57,6 @@ export default function SignUp() {
         }
       }
     } finally {
-      setUsername("");
       setEmail("");
       setPassword("");
       setError("");
@@ -75,30 +67,13 @@ export default function SignUp() {
     <div className="min-h-screen pt-20 pb-20 bg-gradient-to-b from-white to-blue-50 flex items-center justify-center px-4">
       <div className="bg-white border  shadow-lg rounded-2xl max-w-md w-full p-8">
         <h1 className="text-3xl font-bold text-red-700 text-center mb-6">
-          Sign Up
+          Login
         </h1>
-        <p className="text-gray-600 text-center mb-6">
-          Create your NeuroPress account to start writing amazing Blogs
-        </p>
 
         {error && (
           <p className="text-red-700 text-sm mb-4 text-center">{error}</p>
         )}
         <form onSubmit={handleSignUp}>
-          {/* Username Field */}
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2 font-medium">
-              Username
-            </label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-red-700 transition"
-              placeholder="Enter your username"
-            />
-          </div>
-
           {/* Email Field */}
           <div className="mb-4">
             <label className="block text-gray-700 mb-2 font-medium">
@@ -142,17 +117,17 @@ export default function SignUp() {
             type="submit"
             className="w-full bg-red-700 text-white py-3 rounded-lg hover:bg-red-600 transition font-semibold"
           >
-            Sign Up
+            Login
           </button>
         </form>
 
         <p className="text-gray-600 text-sm text-center mt-4">
-          Already have an account?{" "}
+          Dont have an account?{" "}
           <span
             className="text-red-700 cursor-pointer hover:underline"
-            onClick={() => router.push("/Signin")}
+            onClick={() => router.push("/Register")}
           >
-            Sign In
+            Sign Up
           </span>
         </p>
       </div>

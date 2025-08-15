@@ -98,7 +98,7 @@ export default function Home() {
         />
 
         {/* Subtitle / Description */}
-        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto mt-4 sm:mt-6">
+        <p className="text-sm sm:text-base md:text-lg mb-8 text-gray-600 max-w-2xl mx-auto mt-8 sm:mt-6">
           Discover, share, and enjoy a world of blogs. Stay inspired and never
           miss out on amazing content curated just for you.
         </p>
