@@ -60,10 +60,10 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="py-8 sm:py-12 md:py-16 px-4 text-center bg-gradient-to-b from-white to-blue-50">
+      <section className="py-8 sm:py-12 md:py-16 px-4 text-center bg-black">
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
-          <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-gray-700 leading-snug">
+          <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-white leading-snug">
             Highlights
           </h1>
           <Image
@@ -73,7 +73,7 @@ export default function Home() {
             height={50}
             unoptimized
             priority
-            className="w-10 sm:w-12 md:w-16 lg:w-20 h-auto object-contain border border-white rounded-2xl cursor-pointer hover:shadow-lg hover:border-red-700 transition-all duration-300"
+            className="w-10 sm:w-12 md:w-16 text-white lg:w-20 bg-red-600 h-auto object-contain border border-red-700 rounded-2xl cursor-pointer hover:shadow-lg hover:border-white transition-all duration-300"
           />
         </div>
 

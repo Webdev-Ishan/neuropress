@@ -6,7 +6,7 @@ import { Facebook, Twitter, Instagram, Github } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-white to-blue-50 border-t border-gray-200 text-gray-700">
+    <footer className="bg-gradient-to-b from-white to-blue-50 border-t border-gray-200 mt-6 text-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 md:gap-0">
