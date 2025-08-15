@@ -16,7 +16,7 @@ export default function Home() {
       <header className="flex flex-col items-center justify-center text-center py-16 sm:py-16 md:py-20 px-4 flex-1">
         {/* Main Title */}
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2 sm:mb-3 md:mb-4 font-bold text-red-700">
-          <FlipLink href="">NeuroPress</FlipLink>
+          <FlipLink href="https://github.com/Webdev-Ishan">NeuroPress</FlipLink>
         </h1>
 
         {/* Github Title & Icon */}
@@ -44,7 +44,7 @@ export default function Home() {
         {/* Buttons */}
         <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center justify-center">
           <div
-            onClick={() => router.push("/register")}
+            onClick={() => router.push("/Register")}
             className="bg-red-700 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg flex items-center gap-1 sm:gap-2 md:gap-3 transition duration-300 cursor-pointer hover:text-black"
           >
             <span className="text-sm sm:text-base md:text-lg">Get Started</span>
@@ -59,27 +59,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
-      {/* Scrolling Text Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-4 text-center">
-        {/* Main Title */}
-        <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-gray-700 max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 leading-snug">
-          Create and Find the Best Blogs in the World
-        </h1>
-
-        {/* Scrolling Highlight */}
-        <TextScroll
-          className="font-display text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 mt-4 font-bold tracking-tight text-red-700 md:leading-[4rem] lg:leading-[5rem]"
-          text="NeuroPress • NeuroPress • NeuroPress • NeuroPress  "
-          default_velocity={4}
-        />
-
-        {/* Subtitle / Description */}
-        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto mt-4 sm:mt-6">
-          Discover, share, and enjoy a world of blogs. Stay inspired and never
-          miss out on amazing content curated just for you.
-        </p>
-      </section>
 
       <section className="py-8 sm:py-12 md:py-16 px-4 text-center bg-gradient-to-b from-white to-blue-50">
         {/* Section Heading */}
@@ -102,6 +81,27 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <MarkedDiv />
         </div>
+      </section>
+
+      {/* Scrolling Text Section */}
+      <section className="py-8 sm:py-12 md:py-16 px-4 text-center">
+        {/* Main Title */}
+        <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-gray-700 max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 leading-snug">
+          Create and Find the Best Blogs in the World
+        </h1>
+
+        {/* Scrolling Highlight */}
+        <TextScroll
+          className="font-display text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 mt-4 font-bold tracking-tight text-red-700 md:leading-[4rem] lg:leading-[5rem]"
+          text="NeuroPress • NeuroPress • NeuroPress • NeuroPress  "
+          default_velocity={4}
+        />
+
+        {/* Subtitle / Description */}
+        <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto mt-4 sm:mt-6">
+          Discover, share, and enjoy a world of blogs. Stay inspired and never
+          miss out on amazing content curated just for you.
+        </p>
       </section>
     </div>
   );

@@ -28,7 +28,7 @@ export default function Footer() {
               <Link href="/Pricing" className="hover:text-red-700 transition-colors">Pricing</Link>
               <Link href="/Contact" className="hover:text-red-700 transition-colors">Contact</Link>
             </div>
-            <div className="flex flex-col gap-2 text-center sm:text-left">
+            <div className="md:flex flex-col hidden  gap-2 text-center sm:text-left">
               <h2 className="text-lg font-semibold text-red-700">Resources</h2>
               <Link href="/Blog" className="hover:text-red-700 transition-colors">Blog</Link>
               <Link href="/Help" className="hover:text-red-700 transition-colors">Help Center</Link>
