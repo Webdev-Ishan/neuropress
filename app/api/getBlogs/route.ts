@@ -34,6 +34,18 @@ export async function GET(req: NextRequest) {
       },
     });
 
+    if (!blog) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "No blog for this id",
+        },
+        {
+          status: 409,
+        }
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
