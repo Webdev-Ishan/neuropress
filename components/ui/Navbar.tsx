@@ -25,7 +25,7 @@ export default function Navbar() {
           onClick={() => router.push("/")}
           className="flex items-center space-x-2 cursor-pointer"
         >
-          <Notebook className="w-7 h-7 text-red-500" />
+          <Notebook className="w-7 h-7 text-red-700" />
           <span className="text-2xl font-bold text-black ">NeuroPress</span>
         </div>
 
@@ -35,7 +35,7 @@ export default function Navbar() {
             <button
               key={link.name}
               onClick={() => router.push(link.path)}
-              className="text-black hover:text-red-500 font-semibold cursor-pointer transition-colors"
+              className="text-black hover:text-red-700 font-semibold cursor-pointer transition-colors"
             >
               {link.name}
             </button>
@@ -44,7 +44,7 @@ export default function Navbar() {
 
         <button
           onClick={() => router.push("/Signin")}
-          className="bg-red-500 hidden md:block text-white px-6 py-2 rounded-lg cursor-pointer hover:shadow-sm hover:shadow-red-600 transition-all duration-300"
+          className="bg-red-700 hidden md:block text-white px-6 py-2 rounded-lg cursor-pointer hover:shadow-sm hover:shadow-red-700 transition-all duration-300"
         >
           Login
         </button>
@@ -80,7 +80,7 @@ export default function Navbar() {
             <Link
               href="/Signin"
               onClick={() => setIsOpen(false)}
-              className="block w-full bg-red-500 text-white text-center px-4 py-2 rounded-lg hover:shadow-md hover:shadow-blue-600 transition-all duration-300"
+              className="block w-full bg-red-text-red-700 text-white text-center px-4 py-2 rounded-lg hover:shadow-md hover:shadow-blue-600 transition-all duration-300"
             >
               Login
             </Link>
