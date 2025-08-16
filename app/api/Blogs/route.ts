@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       data: {
         title: title,
         content: content,
-        thumbnail:thumbnail,
+        thumbnail: thumbnail,
         authorId: token.id,
       },
     });
@@ -206,6 +206,7 @@ export async function DELETE(req: NextRequest) {
     const existBlog = await prisma.blog.findFirst({
       where: {
         id: blogId,
+        authorId: existUser.id,
       },
     });
 

@@ -6,10 +6,10 @@ export async function POST(req: NextRequest) {
   try {
     const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
     const data = await req.json();
-    const query = data;
-    if (!token) {
+    const query = data.query;
+    if (!token || !query) {
       return NextResponse.json(
-        { success: false, error: "token not found" },
+        { success: false, error: "token or query not found" },
         { status: 400 }
       );
     }
@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
       where: {
         title: {
           contains: query,
+          mode:"insensitive"
         },
       },
     });
