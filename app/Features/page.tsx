@@ -5,7 +5,6 @@ import { BookOpen, Zap, Share2, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
 export default function Page() {
   const router = useRouter();
   return (
@@ -14,7 +13,7 @@ export default function Page() {
         {/* Hero Section */}
         <section className="rounded-2xl p-6 md:p-12 flex flex-col items-center">
           <h1 className="text-3xl md:text-6xl font-bold text-center text-black mb-12">
-            Welcome to <span className="text-red-700">NeuroPress</span>
+            WELCOME TO <span className="text-red-700">NEUROPRESS</span>
           </h1>
 
           <p className="text-base font-sans md:text-lg text-black text-center max-w-2xl mb-10">

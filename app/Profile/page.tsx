@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { Pencil, Trash } from "lucide-react";
 type Blog = {
   id: string;
   title: string;
@@ -25,6 +25,11 @@ type backendresponse = {
     email: string;
     blogs: Blog[];
   };
+};
+
+type backendresponse2 = {
+  success: boolean;
+  message: string;
 };
 
 export default function ProfilePage() {
@@ -68,6 +73,31 @@ export default function ProfilePage() {
 
   const { data: session, status } = useSession();
 
+  const handledelete = async (id: string) => {
+    if (!id) {
+      toast.error("Send ID as well");
+    }
+
+    try {
+      const response = await axios.delete<backendresponse2>("/api/Blogs", {
+        data: { blogId: id },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data.success) {
+        toast.success("Blog deleted Successfully");
+        fetchUserinfo();
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+        console.log(error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (status == "unauthenticated") {
       router.push("Signin");
@@ -77,41 +107,63 @@ export default function ProfilePage() {
   }, [router, session, status]);
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-12">
-      <div className="max-w-4xl mx-auto space-y-12">
+    <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-16">
+      <div className="max-w-6xl mx-auto space-y-16">
         {/* Profile Section */}
-        <section className="bg-red-50 mt-12 shadow-lg rounded-2xl p-8 flex flex-col items-center ">
-          <div className="w-24 h-24 rounded-full bg-red-700 text-white flex items-center justify-center text-3xl font-bold mb-4">
+        <section className="bg-white shadow-md rounded-2xl p-10 flex flex-col items-center text-center border border-gray-100">
+          <div className="w-28 h-28 rounded-full bg-red-600 text-white flex items-center justify-center text-4xl font-bold mb-4 shadow-md">
             {username.charAt(0)}
           </div>
-          <h2 className="text-5xl font-bold text-red-700 mb-1">{username}</h2>
-          <p className="text-gray-700">{email}</p>
+          <h2 className="text-4xl font-extrabold text-gray-900 mb-2">
+            {username}
+          </h2>
+          <p className="text-gray-600 text-lg">{email}</p>
         </section>
 
         {/* Blogs Section */}
         <section>
-          <h3 className="text-2xl font-semibold text-black mb-6 text-center">
-            <span className="text-red-700 text-3xl">Your</span> Blogs
+          <h3 className="text-3xl font-bold text-gray-900 mb-10 text-center">
+            <span className="text-red-600">YOUR </span> BLOGS AND ARTICLES
           </h3>
 
-          <div className="space-y-6">
-            <div className="w-full flex flex-wrap justify-center items-center gap-6 px-4">
-              {blogs.map((card) => (
-                <MinimalCard
-                  key={card.id}
-                  className="w-full cursor-pointer sm:w-[90%] md:w-[380px] lg:w-[420px] xl:w-[480px] shadow-lg hover:scale-105 transition-transform duration-300"
-                >
-                  <MinimalCardImage
-                    className="h-60 md:h-72 lg:h-80 object-cover rounded-t-lg"
-                    src={card.thumbnail}
-                    alt={card.title}
-                  />
-                  <MinimalCardTitle className="text-lg text-red-700 font-semibold mt-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-2">
+            {blogs.map((card) => (
+              <MinimalCard
+                key={card.id}
+                className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              >
+                {/* Thumbnail */}
+                <MinimalCardImage
+                  className="h-52 w-full object-cover"
+                  src={card.thumbnail}
+                  alt={card.title}
+                />
+
+                {/* Card Body */}
+                <div className="flex flex-col flex-grow p-5">
+                  <MinimalCardTitle className="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition">
                     {card.title}
                   </MinimalCardTitle>
-                </MinimalCard>
-              ))}
-            </div>
+
+                  {/* Actions */}
+                  <div className="mt-auto flex justify-end gap-3 pt-4 border-t border-gray-100">
+                    <button
+                      className="p-2 rounded-lg hover:bg-gray-100 transition"
+                      title="Edit"
+                    >
+                      <Pencil className="w-5 h-5 text-gray-500" />
+                    </button>
+                    <button
+                      onClick={() => handledelete(card.id)}
+                      className="p-2 rounded-lg hover:bg-red-50 transition"
+                      title="Delete"
+                    >
+                      <Trash className="w-5 h-5 text-red-600" />
+                    </button>
+                  </div>
+                </div>
+              </MinimalCard>
+            ))}
           </div>
         </section>
       </div>
