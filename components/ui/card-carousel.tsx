@@ -17,7 +17,7 @@ import {
 } from "swiper/modules";
 
 interface CarouselProps {
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; label: string }[];
   autoplayDelay?: number;
   showPagination?: boolean;
   showNavigation?: boolean;
@@ -101,6 +101,9 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                         className="size-full rounded-xl"
                         alt={image.alt}
                       />
+                      <h1 className="font-bold font-sans mt-4 text-lg text-red-700">
+                        {image.label}
+                      </h1>
                     </div>
                   </SwiperSlide>
                 ))}
@@ -114,6 +117,9 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                         className="size-full rounded-xl"
                         alt={image.alt}
                       />
+                      <h1 className="font-bold font-sans mt-4 text-lg text-red-700">
+                        {image.label}
+                      </h1>
                     </div>
                   </SwiperSlide>
                 ))}
