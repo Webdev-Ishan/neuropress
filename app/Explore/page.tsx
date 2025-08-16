@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MinimalCard,
   MinimalCardImage,
@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 type Blogresponse = {
   id: string;
@@ -23,6 +24,7 @@ type Blog = {
 
 export default function ExplorePage() {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [query, setQuery] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState<Blogresponse[]>([]);
 
@@ -51,6 +53,12 @@ export default function ExplorePage() {
       }
     }
   };
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/Signin");
+    }
+  }, [session, router, status]);
 
   return (
     <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-12">
@@ -86,7 +94,7 @@ export default function ExplorePage() {
             filteredBlogs.map((blog) => (
               <MinimalCard
                 key={blog.id}
-                onClick={() => router.push(`/Blog/${blog.id}`)}
+                onClick={() => router.push(`/BlogPost/${blog.id}`)}
                 className=" overflow-hidden border bg-gray-200 rounded-xl p-4  hover:border-red-700  transition duration-300"
               >
                 <MinimalCardImage
