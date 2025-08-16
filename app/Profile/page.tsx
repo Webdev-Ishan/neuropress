@@ -1,36 +1,80 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MinimalCard,
   MinimalCardImage,
   MinimalCardTitle,
 } from "@/components/ui/minimal-card";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+type Blog = {
+  id: string;
+  title: string;
+  content: string;
+  thumbnail: string;
+};
+
+type backendresponse = {
+  success: boolean;
+  existingUser: {
+    username: string;
+    email: string;
+    blogs: Blog[];
+  };
+};
 
 export default function ProfilePage() {
-  const [username, setUsername] = useState("John Doe");
-  const [email, setEmail] = useState("johndoe@example.com");
+  const router = useRouter();
 
-  const blogs = [
-    {
-      id: 1,
-      src: "/Features2.jpg",
-      title: "Getting Started with NeuroPress",
-      content: "Intro blog content...",
-    },
-    {
-      id: 2,
-      src: "/Features2.jpg",
-      title: "Mastering AI Integration",
-      content: "Another blog content...",
-    },
-    {
-      id: 3,
-      src: "/Features2.jpg",
-      title: "Next.js Tips and Tricks",
-      content: "Some blog content...",
-    },
-  ];
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [blogs, setblogs] = useState<Blog[]>([]);
+
+  const fetchUserinfo = async () => {
+    try {
+      const response = await axios.get<backendresponse>("/api/auth/Profile", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data.success) {
+        console.log(response);
+        setUsername(response.data.existingUser.username);
+        setEmail(response.data.existingUser.email);
+        setblogs(response.data.existingUser.blogs);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status) {
+        const status = error.response.status;
+
+        if (status === 400) {
+          toast.error("PLease Login First");
+          console.log(error);
+        } else {
+          toast.error("PLease Regsiter");
+          console.log(error);
+        }
+      } else {
+        toast.error("SOemthign went wrong");
+        console.log(error);
+      }
+    }
+  };
+
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status == "unauthenticated") {
+      router.push("Signin");
+    } else {
+      fetchUserinfo();
+    }
+  }, [router, session, status]);
 
   return (
     <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-12">
@@ -59,7 +103,7 @@ export default function ProfilePage() {
                 >
                   <MinimalCardImage
                     className="h-60 md:h-72 lg:h-80 object-cover rounded-t-lg"
-                    src={card.src}
+                    src={card.thumbnail}
                     alt={card.title}
                   />
                   <MinimalCardTitle className="text-lg text-red-700 font-semibold mt-4">

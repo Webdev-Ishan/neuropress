@@ -25,9 +25,10 @@ export async function GET(req: NextRequest) {
       include: {
         blogs: {
           select: {
+            id: true,
+            thumbnail:true,
             title: true,
             content: true,
-            likes: true,
           },
         },
       },

@@ -5,6 +5,7 @@ import z from "zod";
 const Blogschema = z.object({
   title: z.string().min(3).max(50),
   content: z.string(),
+  thumbnail: z.string().optional(),
   blogId: z.string().optional(),
 });
 export async function POST(req: NextRequest) {
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { title, content } = parsedBody.data;
+    const { title, content, thumbnail } = parsedBody.data;
 
     const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
 
@@ -47,6 +48,7 @@ export async function POST(req: NextRequest) {
       where: {
         title: title,
         content: content,
+        thumbnail: thumbnail,
         authorId: existUser.id,
       },
     });
@@ -62,6 +64,7 @@ export async function POST(req: NextRequest) {
       data: {
         title: title,
         content: content,
+        thumbnail:thumbnail,
         authorId: token.id,
       },
     });

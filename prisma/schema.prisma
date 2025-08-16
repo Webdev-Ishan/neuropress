@@ -28,6 +28,7 @@ model Blog {
   id        String   @id @default(uuid())
   title     String
   content   String
+  thumbnail String? 
   author    User     @relation("creator", fields: [authorId], references: [id])
   authorId  String
   likes     Like[]
