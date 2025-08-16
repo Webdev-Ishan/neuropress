@@ -12,7 +12,7 @@ export default function About() {
       <section className="text-black py-20 px-6 text-center">
         <h1 className="text-6xl font-sans font-bold mb-4">
           LEARN MORE <br />
-          ABOUT<span className="text-red-700"> MINDVAULT</span>
+          ABOUT<span className="text-red-700"> NEUROPRESS</span>
         </h1>
         <p className="max-w-3xl mx-auto text-lg mt-8 font-sans text-gray-700">
           Our Platform, Blogs, Community and More.
