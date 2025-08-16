@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/minimal-card";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 type Blogresponse = {
   id: string;
@@ -21,6 +22,7 @@ type Blog = {
 };
 
 export default function ExplorePage() {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState<Blogresponse[]>([]);
 
@@ -84,7 +86,8 @@ export default function ExplorePage() {
             filteredBlogs.map((blog) => (
               <MinimalCard
                 key={blog.id}
-                className=" overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+                onClick={() => router.push(`/Blog/${blog.id}`)}
+                className=" overflow-hidden border bg-gray-200 rounded-xl p-4  hover:border-red-700  transition duration-300"
               >
                 <MinimalCardImage
                   className="h-44 w-full cursor-pointer object-cover"
