@@ -99,7 +99,7 @@ export default function Home() {
       <section className="py-8 sm:py-12 md:py-16 px-4 text-center ">
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-700 mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-sans text-red-700 mb-4">
             Highlights
           </h1>
           <Image
