@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { ThumbsUp } from "lucide-react";
 
 type Blogresponse = {
   id: string;
@@ -24,6 +25,11 @@ type Blog = {
 type BlogRelated = {
   success: boolean;
   blogs: Blogresponse[];
+};
+
+type LikeBackend = {
+  success: boolean;
+  message: string;
 };
 
 export default function Page() {
@@ -91,6 +97,29 @@ export default function Page() {
     }
   };
 
+  const Likeit = async (blogId: string) => {
+    try {
+      const response = await axios.post<LikeBackend>(
+        "/api/likes",
+        { blogId },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.data.success) {
+        toast.success("Response Submited");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+        console.log(error);
+      }
+    }
+  };
+
   // Fetch main blog
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -98,7 +127,7 @@ export default function Page() {
     } else {
       fetchBlogInfo();
     }
-  }, [status]);
+  }, [status, session]);
 
   // Fetch related blogs only once when blog title is loaded
   useEffect(() => {
@@ -169,14 +198,23 @@ export default function Page() {
       </section>
 
       {/* Author Section */}
-      <section className="w-full max-w-4xl flex flex-col justify-center items-end border-t pt-6 mt-8">
-        <p className="text-black cursor-pointer text-base italic">
-          — {blog?.author?.username}
-        </p>
-        <p className="text-red-600 cursor-pointer text-base italic">
-          {blog?.author?.email}
-        </p>
-      </section>
+      <div className="w-full flex justify-center items-center">
+        <section className="w-full max-w-4xl flex flex-col justify-center items-end border-t pt-6 mt-8">
+          <p className="text-black cursor-pointer text-base italic">
+            — {blog?.author?.username}
+          </p>
+          <p className="text-red-600 cursor-pointer text-base italic">
+            {blog?.author?.email}
+          </p>
+        </section>
+
+        <section className="w-full max-w-4xl flex flex-col justify-center items-start border-t pt-6 mt-8">
+          <ThumbsUp
+            onClick={() => Likeit(blog?.id ?? "")}
+            className="text-lg"
+          />
+        </section>
+      </div>
 
       {/* Related Blogs */}
       {relatedblogs.length > 0 && (
