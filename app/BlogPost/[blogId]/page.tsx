@@ -197,23 +197,25 @@ export default function Page() {
         })}
       </section>
 
-      {/* Author Section */}
-      <div className="w-full flex justify-center items-center">
-        <section className="w-full max-w-4xl flex flex-col justify-center items-end border-t pt-6 mt-8">
+      {/* Author + Like Section */}
+      <div className="w-full flex justify-between items-center border-t pt-6 mt-8 max-w-4xl mx-auto">
+        {/* Like Button on Left */}
+        <div className="flex items-center">
+          <ThumbsUp
+            onClick={() => Likeit(blog?.id ?? "")}
+            className="text-lg cursor-pointer text-red-600 hover:scale-110 transition"
+          />
+        </div>
+
+        {/* Author Info on Right */}
+        <div className="flex flex-col items-end">
           <p className="text-black cursor-pointer text-base italic">
             — {blog?.author?.username}
           </p>
           <p className="text-red-600 cursor-pointer text-base italic">
             {blog?.author?.email}
           </p>
-        </section>
-
-        <section className="w-full max-w-4xl flex flex-col justify-center items-start border-t pt-6 mt-8">
-          <ThumbsUp
-            onClick={() => Likeit(blog?.id ?? "")}
-            className="text-lg"
-          />
-        </section>
+        </div>
       </div>
 
       {/* Related Blogs */}
