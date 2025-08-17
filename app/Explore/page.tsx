@@ -15,6 +15,7 @@ type Blogresponse = {
   id: string;
   title: string;
   thumbnail: string;
+  createdAt: string;
 };
 
 type Blog = {
@@ -104,6 +105,11 @@ export default function ExplorePage() {
                 />
                 <MinimalCardTitle className=" cursor-pointer text-base font-medium text-red-600 transition">
                   {blog.title}
+                </MinimalCardTitle>
+                <MinimalCardTitle className=" cursor-pointer text-base font-medium text-gray-600 transition">
+                  {new Date(blog.createdAt).toLocaleString("en-IN", {
+                    dateStyle: "medium",
+                  })}
                 </MinimalCardTitle>
               </MinimalCard>
             ))

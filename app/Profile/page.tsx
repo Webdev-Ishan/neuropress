@@ -130,6 +130,7 @@ export default function ProfilePage() {
             {blogs.map((card) => (
               <MinimalCard
                 key={card.id}
+                onClick={()=>router.push(`/BlogPost/${card.id}`)}
                 className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col"
               >
                 {/* Thumbnail */}
