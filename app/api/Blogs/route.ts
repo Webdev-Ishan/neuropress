@@ -105,7 +105,7 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    const { title, content, blogId } = parsedBody.data;
+    const { title, content, thumbnail, blogId } = parsedBody.data;
 
     const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
 
@@ -150,6 +150,7 @@ export async function PUT(req: NextRequest) {
         title: title,
         content: content,
         authorId: token.id,
+        thumbnail: thumbnail,
       },
     });
 

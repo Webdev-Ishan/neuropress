@@ -130,11 +130,11 @@ export default function ProfilePage() {
             {blogs.map((card) => (
               <MinimalCard
                 key={card.id}
-                onClick={()=>router.push(`/BlogPost/${card.id}`)}
                 className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col"
               >
                 {/* Thumbnail */}
                 <MinimalCardImage
+                  onClick={() => router.push(`/BlogPost/${card.id}`)}
                   className="h-52 w-full object-cover"
                   src={card.thumbnail}
                   alt={card.title}
@@ -152,7 +152,10 @@ export default function ProfilePage() {
                       className="p-2 rounded-lg hover:bg-gray-100 transition"
                       title="Edit"
                     >
-                      <Pencil className="w-5 h-5 text-gray-500" />
+                      <Pencil
+                        onClick={() => router.push(`/EditBlog/${card.id}`)}
+                        className="w-5 h-5 text-gray-500"
+                      />
                     </button>
                     <button
                       onClick={() => handledelete(card.id)}
