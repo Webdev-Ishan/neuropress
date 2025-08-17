@@ -6,10 +6,28 @@ import Image from "next/image";
 import { MoveRight } from "lucide-react";
 import { TextScroll } from "@/components/ui/text-scroll";
 import MarkedDiv from "@/components/markeddiv";
-
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function Home() {
   const router = useRouter();
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
+    gsap.utils.toArray<HTMLElement>(".section").forEach((sec) => {
+      gsap.from(sec, {
+        opacity: 0,
+        y: 50,
+        duration: 2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sec, // 👈 animate this section only
+          start: "top 100%", // when it enters viewport
+          toggleActions: "play none none none",
+        },
+      });
+    });
+  }, []);
   return (
     <div className="bg-gradient-to-b from-white to-blue-50 min-h-screen flex flex-col font-sans">
       {/* Header */}
@@ -21,9 +39,7 @@ export default function Home() {
 
         {/* Github Section */}
         <div className="flex items-center justify-center gap-3 mb-6">
-          <FlipLink href="" >
-            Github
-          </FlipLink>
+          <FlipLink href="">Github</FlipLink>
           <Image
             src="https://www.svgrepo.com/show/303615/github-icon-1-logo.svg"
             alt="GitHub Logo"
@@ -100,7 +116,9 @@ export default function Home() {
       {/* Highlights Section */}
       <section className="py-16 px-6 text-center">
         <div className="flex items-center justify-center gap-4 mb-10">
-          <h1 className="text-3xl md:text-5xl font-bold text-red-700">Featured Highlights</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-red-700">
+            Featured Highlights
+          </h1>
           <Image
             src="https://www.svgrepo.com/show/486695/highlight.svg"
             alt="Highlight Icon"
@@ -140,19 +158,25 @@ export default function Home() {
         </h2>
         <div className="max-w-4xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-            <h3 className="text-xl font-semibold text-red-700 mb-2">Minimal Writing</h3>
+            <h3 className="text-xl font-semibold text-red-700 mb-2">
+              Minimal Writing
+            </h3>
             <p className="text-gray-600 text-base">
               A distraction-free editor designed to keep your focus on words.
             </p>
           </div>
           <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-            <h3 className="text-xl font-semibold text-red-700 mb-2">Reach Readers</h3>
+            <h3 className="text-xl font-semibold text-red-700 mb-2">
+              Reach Readers
+            </h3>
             <p className="text-gray-600 text-base">
               Share your blogs, build an audience, and inspire with your ideas.
             </p>
           </div>
           <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-            <h3 className="text-xl font-semibold text-red-700 mb-2">Stay Organized</h3>
+            <h3 className="text-xl font-semibold text-red-700 mb-2">
+              Stay Organized
+            </h3>
             <p className="text-gray-600 text-base">
               Keep your blogs structured and easy to explore for your readers.
             </p>
@@ -162,4 +186,3 @@ export default function Home() {
     </div>
   );
 }
-
