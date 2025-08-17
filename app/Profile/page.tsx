@@ -115,7 +115,7 @@ export default function ProfilePage() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-red-50 via-white to-gray-50 rounded-3xl"></div>
 
       {/* Avatar */}
-      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-red-600 to-red-400 text-white flex items-center justify-center text-5xl font-bold mb-6 shadow-lg ring-4 ring-red-100">
+      <div onClick={()=>router.push("/EditProfile")} className="w-32 h-32 rounded-full bg-gradient-to-br from-red-600 to-red-400 text-white flex items-center justify-center text-5xl font-bold mb-6 shadow-lg ring-4 ring-red-100">
         {username.charAt(0)}
       </div>
 
