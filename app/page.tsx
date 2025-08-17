@@ -31,14 +31,14 @@ export default function Home() {
   return (
     <div className="bg-gradient-to-b from-white to-blue-50 min-h-screen flex flex-col font-sans">
       {/* Header */}
-      <header className="flex flex-col items-center justify-center text-center py-20 px-6 flex-1">
+      <header className="flex flex-col items-center justify-center text-center py-20 px-6 flex-1 section">
         {/* Main Title */}
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-red-700 mb-4">
           <FlipLink href="https://github.com/Webdev-Ishan">NeuroPress</FlipLink>
         </h1>
 
         {/* Github Section */}
-        <div className="flex items-center justify-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-3 mb-6 section">
           <FlipLink href="">Github</FlipLink>
           <Image
             src="https://www.svgrepo.com/show/303615/github-icon-1-logo.svg"
@@ -58,7 +58,7 @@ export default function Home() {
         </p>
 
         {/* Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center section">
           <button
             onClick={() => router.push("/Register")}
             className="bg-red-700 text-white px-6 md:px-8 py-3 rounded-lg flex items-center gap-2 text-base font-medium transition hover:bg-red-800 shadow-sm"
@@ -76,7 +76,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 px-6 md:px-16 flex flex-col-reverse md:flex-row items-center gap-10">
+      <section className="py-16 px-6 md:px-16 flex flex-col-reverse md:flex-row items-center gap-10 section">
         <div className="w-full md:w-1/2 text-center md:text-left">
           <h2 className="text-3xl md:text-5xl font-bold text-red-700 mb-4">
             Share Your Ideas, Reach the World
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
 
         {/* Right Image */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end section">
           <Image
             src="https://www.creative-tim.com/twcomponents/svg/website-designer-bro-purple.svg"
             width={400}
@@ -114,7 +114,7 @@ export default function Home() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-16 px-6 text-center">
+      <section className="py-16 px-6 text-center section">
         <div className="flex items-center justify-center gap-4 mb-10">
           <h1 className="text-3xl md:text-5xl font-bold text-red-700">
             Featured Highlights
@@ -135,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* Scrolling Text Section */}
-      <section className="py-16 px-6 text-center">
+      <section className="py-16 px-6 text-center section">
         <h1 className="text-3xl md:text-5xl font-bold text-gray-800 max-w-3xl mx-auto mb-8 leading-snug">
           Create and Find the Best Blogs in the World
         </h1>
@@ -152,7 +152,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="py-20 px-6 text-center">
+      <section className="py-20 px-6 text-center section">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
           Why choose NeuroPress?
         </h2>
