@@ -11,134 +11,155 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="bg-gradient-to-b from-white to-blue-50 min-h-screen flex flex-col">
+    <div className="bg-gradient-to-b from-white to-blue-50 min-h-screen flex flex-col font-sans">
       {/* Header */}
-      <header className="flex flex-col items-center justify-center text-center py-16 sm:py-16 md:py-20 px-4 flex-1">
+      <header className="flex flex-col items-center justify-center text-center py-20 px-6 flex-1">
         {/* Main Title */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2 sm:mb-3 md:mb-4 font-bold text-red-700">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-red-700 mb-4">
           <FlipLink href="https://github.com/Webdev-Ishan">NeuroPress</FlipLink>
         </h1>
 
-        {/* Github Title & Icon */}
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-2 sm:mb-3 md:mb-4 font-bold text-red-700">
-          <span className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
-            <FlipLink href="">Github</FlipLink>
-            <Image
-              src="https://www.svgrepo.com/show/303615/github-icon-1-logo.svg"
-              alt="GitHub Logo"
-              width={50} // base size for mobile
-              height={50}
-              unoptimized
-              priority
-              className="w-10 sm:w-12 md:w-16 lg:w-20 h-auto object-contain border border-white rounded-2xl cursor-pointer hover:shadow-lg hover:border-red-700 transition-all duration-300"
-            />
-          </span>
-        </h2>
+        {/* Github Section */}
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <FlipLink href="" >
+            Github
+          </FlipLink>
+          <Image
+            src="https://www.svgrepo.com/show/303615/github-icon-1-logo.svg"
+            alt="GitHub Logo"
+            width={40}
+            height={40}
+            unoptimized
+            priority
+            className="w-10 h-10 md:w-12 md:h-12 object-contain border border-gray-200 rounded-xl cursor-pointer hover:shadow-md hover:border-red-600 transition-all duration-300"
+          />
+        </div>
 
         {/* Description */}
-        <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl mx-auto">
+        <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Your personal hub for creating, sharing, and exploring ideas. Write
           freely, connect with readers, and keep your stories alive.
         </p>
 
         {/* Buttons */}
-        <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center justify-center">
-          <div
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <button
             onClick={() => router.push("/Register")}
-            className="bg-red-700 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg flex items-center gap-1 sm:gap-2 md:gap-3 transition duration-300 cursor-pointer hover:text-black"
+            className="bg-red-700 text-white px-6 md:px-8 py-3 rounded-lg flex items-center gap-2 text-base font-medium transition hover:bg-red-800 shadow-sm"
           >
-            <span className="text-sm sm:text-base md:text-lg">Get Started</span>
-            <MoveRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-          </div>
+            Get Started <MoveRight className="w-4 h-4" />
+          </button>
 
-          <div
+          <button
             onClick={() => router.push("/About")}
-            className="border border-red-700 text-black px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg cursor-pointer hover:bg-red-200 text-sm sm:text-base md:text-lg"
+            className="border border-red-700 text-red-700 px-6 md:px-8 py-3 rounded-lg text-base font-medium transition hover:bg-red-50"
           >
             Learn More
-          </div>
+          </button>
         </div>
       </header>
-      <section className="py-12 px-4 sm:px-8 md:px-16 flex flex-col-reverse md:flex-row items-center">
-        <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-700 mb-4">
+
+      {/* Hero Section */}
+      <section className="py-16 px-6 md:px-16 flex flex-col-reverse md:flex-row items-center gap-10">
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <h2 className="text-3xl md:text-5xl font-bold text-red-700 mb-4">
             Share Your Ideas, Reach the World
           </h2>
-          <p className="text-gray-700 text-lg sm:text-xl md:text-lg lg:text-xl max-w-lg">
+          <p className="text-gray-700 text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
             NeuroPress lets you write, organize, and explore blogs effortlessly.
             Create content, connect with readers, and keep your stories alive.
           </p>
           <div className="mt-6 flex justify-center md:justify-start gap-4">
             <button
               onClick={() => router.push("/Register")}
-              className="bg-red-700 cursor-pointer text-white px-6 py-3 rounded-lg hover:bg-red-600 transition font-semibold"
+              className="bg-red-700 text-white px-6 py-3 rounded-lg hover:bg-red-800 transition font-semibold shadow-sm"
             >
               Get Started
             </button>
             <button
               onClick={() => router.push("/About")}
-              className="border cursor-pointer border-red-700 text-red-700 px-6 py-3 rounded-lg hover:bg-red-200 transition font-semibold"
+              className="border border-red-700 text-red-700 px-6 py-3 rounded-lg hover:bg-red-50 transition font-semibold"
             >
               Learn More
             </button>
           </div>
         </div>
 
-        {/* Right SVG Image */}
+        {/* Right Image */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <Image
             src="https://www.creative-tim.com/twcomponents/svg/website-designer-bro-purple.svg"
-            width={50}
-            height={50}
-            alt="Tailwind CSS Components"
-            className="w-full h-auto max-w-md rounded-2xl text-red-500 cursor-pointer"
+            width={400}
+            height={400}
+            alt="Illustration"
+            className="w-full max-w-md h-auto rounded-xl"
           />
         </div>
       </section>
 
-      <section className="py-8 sm:py-12 md:py-16 px-4 text-center ">
-        {/* Section Heading */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-sans text-red-700 mb-4">
-            Highlights
-          </h1>
+      {/* Highlights Section */}
+      <section className="py-16 px-6 text-center">
+        <div className="flex items-center justify-center gap-4 mb-10">
+          <h1 className="text-3xl md:text-5xl font-bold text-red-700">Featured Highlights</h1>
           <Image
             src="https://www.svgrepo.com/show/486695/highlight.svg"
             alt="Highlight Icon"
-            width={50}
-            height={50}
+            width={48}
+            height={48}
             unoptimized
             priority
-            className="w-10 sm:w-12 md:w-16 text-white lg:w-20 bg-red-600 h-auto object-contain border border-red-700 rounded-2xl cursor-pointer hover:shadow-lg hover:border-white transition-all duration-300"
+            className="w-12 h-12 bg-red-600 text-white rounded-xl border border-red-700 p-2"
           />
         </div>
-
-        {/* MarkedDiv Component */}
         <div className="max-w-4xl mx-auto">
           <MarkedDiv />
         </div>
       </section>
 
       {/* Scrolling Text Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-4 text-center">
-        {/* Main Title */}
-        <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-gray-700 max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 leading-snug">
+      <section className="py-16 px-6 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-800 max-w-3xl mx-auto mb-8 leading-snug">
           Create and Find the Best Blogs in the World
         </h1>
 
-        {/* Scrolling Highlight */}
         <TextScroll
-          className="font-display text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 mt-4 font-bold tracking-tight text-red-700 md:leading-[4rem] lg:leading-[5rem]"
-          text="NeuroPress • NeuroPress • NeuroPress • NeuroPress  "
+          className="font-display text-center text-3xl md:text-5xl font-extrabold text-red-700 tracking-tight mb-8"
+          text="NeuroPress • NeuroPress • NeuroPress • NeuroPress"
           default_velocity={4}
         />
 
-        {/* Subtitle / Description */}
-        <p className="text-sm sm:text-base md:text-lg mb-8 text-gray-600 max-w-2xl mx-auto mt-8 sm:mt-6">
+        <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Discover, share, and enjoy a world of blogs. Stay inspired and never
           miss out on amazing content curated just for you.
         </p>
       </section>
+
+      <section className="py-20 px-6 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+          Why choose NeuroPress?
+        </h2>
+        <div className="max-w-4xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold text-red-700 mb-2">Minimal Writing</h3>
+            <p className="text-gray-600 text-base">
+              A distraction-free editor designed to keep your focus on words.
+            </p>
+          </div>
+          <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold text-red-700 mb-2">Reach Readers</h3>
+            <p className="text-gray-600 text-base">
+              Share your blogs, build an audience, and inspire with your ideas.
+            </p>
+          </div>
+          <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+            <h3 className="text-xl font-semibold text-red-700 mb-2">Stay Organized</h3>
+            <p className="text-gray-600 text-base">
+              Keep your blogs structured and easy to explore for your readers.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
