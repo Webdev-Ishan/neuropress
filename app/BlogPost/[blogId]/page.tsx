@@ -67,7 +67,7 @@ export default function Page() {
     } else {
       fetchBlogInfo();
     }
-  }, [session, router, status]);
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4 py-10"></div>
