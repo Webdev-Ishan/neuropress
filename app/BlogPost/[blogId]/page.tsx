@@ -123,11 +123,49 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Blog Content */}
-      <section className="w-full max-w-4xl text-gray-800">
-        <p className="text-lg leading-relaxed text-justify mb-12">
-          {blog?.content}
-        </p>
+      <section className="w-full  mx-auto px-4 py-8 bg-white">
+        {blog?.content.split("\n").map((paragraph, idx) => {
+          const words = paragraph.split(" ");
+          if (words.length === 0) return null;
+
+          const firstWord = words.shift();
+
+          // First sentence (optional red highlight)
+          const firstSentence = words.join(" ").split(". ")[0] + "-";
+          const restOfParagraph = words
+            .join(" ")
+            .substring(firstSentence.length);
+
+          const keywords = ["AI", "Narrow", "Specific", "Tasks"]; // example keywords
+
+          return (
+            <p
+              key={idx}
+              className="text-lg leading-relaxed text-black mb-6 whitespace-pre-line"
+            >
+              {/* First word bold black */}
+              <span className="font-bold text-black">{firstWord} </span>
+
+              {/* First sentence in red */}
+              <span className="text-red-600 font-semibold">
+                {firstSentence}{" "}
+              </span>
+
+              {/* Rest of paragraph */}
+              {restOfParagraph.split(" ").map((word, i) => {
+                // Keywords bold in red
+                if (keywords.includes(word.replace(/[.,]/g, ""))) {
+                  return (
+                    <span key={i} className="font-bold text-red-600">
+                      {word}{" "}
+                    </span>
+                  );
+                }
+                return word + " ";
+              })}
+            </p>
+          );
+        })}
       </section>
 
       {/* Author Section */}

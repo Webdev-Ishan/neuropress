@@ -20,7 +20,7 @@ export default function About() {
       </section>
 
       {/* Mission Statement */}
-      <section className="py-16 px-6 max-w-5xl flex justify-center items-center mx-auto text-center">
+      <section className=" max-w-5xl flex justify-center items-center mx-auto text-center">
         <Image
           src="/About.jpg"
           alt="Highlight Icon"
@@ -28,7 +28,7 @@ export default function About() {
           height={50}
           unoptimized
           priority
-          className="w-full h-full  text-white border bg-red-600  object-contain border-black  rounded-2xl cursor-pointer hover:shadow-lg hover:border-white transition-all duration-300"
+          className="w-full h-[400px]  text-white border bg-red-600  object-contain   rounded-2xl cursor-pointer hover:shadow-lg  transition-all duration-300"
         />
       </section>
 
