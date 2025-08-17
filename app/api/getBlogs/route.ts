@@ -8,14 +8,14 @@ export async function POST(req: NextRequest) {
     const data = await req.json();
     const blogId = data.blogId;
 
-    if (!token ) {
+    if (!token) {
       return NextResponse.json(
         { success: false, error: "token  not found" },
         { status: 400 }
       );
     }
 
-     if (!blogId ) {
+    if (!blogId) {
       return NextResponse.json(
         { success: false, error: " blogID not found" },
         { status: 402 }
@@ -37,16 +37,16 @@ export async function POST(req: NextRequest) {
 
     const blog = await prisma.blog.findUnique({
       where: {
-        id: blogId as string,
+        id: blogId,
       },
-      include: {
-        author: {
-          select: {
-            username: true,
-            email: true,
-          },
-        },
-      },
+      include:{
+        author:{
+          select:{
+            username:true,
+            email:true
+          }
+        }
+      }
     });
 
     if (!blog) {

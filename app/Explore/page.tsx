@@ -44,6 +44,7 @@ export default function ExplorePage() {
 
       if (response.data.success) {
         setFilteredBlogs(response.data.blogs);
+        console.log(response.data);
       } else {
         setFilteredBlogs([]);
       }
@@ -95,7 +96,9 @@ export default function ExplorePage() {
             filteredBlogs.map((blog) => (
               <MinimalCard
                 key={blog.id}
-                onClick={() => router.push(`/BlogPost/${blog.id}`)}
+                onClick={() =>
+                  router.push(`/BlogPost/${blog.id}?query=${encodeURIComponent(query)}`)
+                }
                 className=" overflow-hidden border bg-gray-200 rounded-xl p-4  hover:border-red-700  transition duration-300"
               >
                 <MinimalCardImage

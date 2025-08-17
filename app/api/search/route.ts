@@ -29,10 +29,20 @@ export async function POST(req: NextRequest) {
 
     const blogs = await prisma.blog.findMany({
       where: {
-        title: {
-          contains: query,
-          mode:"insensitive"
-        },
+        OR: [
+          {
+            title: {
+              contains: query,
+              mode: "insensitive",
+            },
+          },
+          {
+            content: {
+              contains: query,
+              mode: "insensitive",
+            },
+          },
+        ],
       },
     });
 
