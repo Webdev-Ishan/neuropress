@@ -2,14 +2,33 @@
 import Carousal from "@/components/Carousal";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function About() {
   const router = useRouter();
+ useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray<HTMLElement>(".section").forEach((sec) => {
+    gsap.from(sec, {
+      opacity: 0,
+      y: 50,
+      duration: 2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sec,          // 👈 animate this section only
+        start: "top 100%",      // when it enters viewport
+        toggleActions: "play none none none",
+      },
+    });
+  });
+}, []);
 
   return (
     <div className="bg-white text-gray-800">
       {/* Hero Section */}
-      <section className="text-black py-20 px-6 text-center">
+      <section className="text-black py-20 px-6 text-center section">
         <h1 className="text-6xl font-sans font-bold mb-4">
           LEARN MORE <br />
           ABOUT<span className="text-red-700"> NEUROPRESS</span>
@@ -20,7 +39,7 @@ export default function About() {
       </section>
 
       {/* Mission Statement */}
-      <section className=" max-w-5xl flex justify-center items-center mx-auto text-center">
+      <section className=" max-w-5xl flex justify-center items-center mx-auto text-center section">
         <Image
           src="/About.jpg"
           alt="Highlight Icon"
@@ -33,7 +52,7 @@ export default function About() {
       </section>
 
       {/* Features Overview */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 section">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
           {/* Text */}
           <h1 className="font-bold font-sans text-2xl md:text-3xl lg:text-4xl max-w-lg">
@@ -54,7 +73,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 section">
         <div className="max-w-6xl mx-auto flex flex-col  items-center justify-center gap-8 text-center md:text-left">
           {/* Text */}
           <h1 className="font-bold font-sans text-6xl max-w-lg">
@@ -73,7 +92,7 @@ export default function About() {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 section">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <h1 className="text-3xl font-sans sm:text-4xl md:text-5xl font-extrabold text-black mb-6">
             Benefits of Using <span className="text-red-700 ">NeuroPress</span>
@@ -92,7 +111,7 @@ export default function About() {
       </section>
 
       {/* Call-to-Action Footer */}
-      <section className="py-12 px-6 text-center ">
+      <section className="py-12 px-6 text-center section ">
         <h2 className="text-2xl font-semibold font-sans mb-4 text-black">
           Ready to boost your productivity?
         </h2>
