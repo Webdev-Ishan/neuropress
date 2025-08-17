@@ -1,17 +1,36 @@
 "use client";
 import SkiperCardDemo from "@/components/Skiper";
-import React from "react";
+import React, { useEffect } from "react";
 import { BookOpen, Zap, Share2, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function Page() {
   const router = useRouter();
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray<HTMLElement>(".section").forEach((sec) => {
+      gsap.from(sec, {
+        opacity: 0,
+        y: 50,
+        duration: 2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sec, // 👈 animate this section only
+          start: "top 100%", // when it enters viewport
+          toggleActions: "play none none none",
+        },
+      });
+    });
+  }, []);
   return (
     <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4 py-10">
       <div className="w-full max-w-6xl">
         {/* Hero Section */}
-        <section className="rounded-2xl p-6 md:p-12 flex flex-col items-center">
+        <section className="rounded-2xl p-6 md:p-12 flex flex-col items-center section">
           <h1 className="text-3xl md:text-6xl font-bold text-center text-black mb-12">
             WELCOME TO <span className="text-red-700">NEUROPRESS</span>
           </h1>
@@ -27,7 +46,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="py-12 px-4 sm:px-8 md:px-16 flex flex-col-reverse md:flex-row items-center">
+        <section className="py-12 px-4 sm:px-8 md:px-16 flex flex-col-reverse md:flex-row items-center section">
           <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-700 mb-4">
               Share Your Ideas, Reach the World
@@ -51,7 +70,7 @@ export default function Page() {
         </section>
 
         {/* Features Grid Section */}
-        <section className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 section">
           <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition">
             <BookOpen className="w-12 h-12 text-blue-600 mb-4" />
             <h2 className="text-2xl font-semibold text-black mb-2">
@@ -98,7 +117,7 @@ export default function Page() {
         </section>
 
         {/* Call-to-Action */}
-        <section className="mt-24 text-center">
+        <section className="mt-24 text-center section">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
             Start Your Journey with{" "}
             <span className="text-red-700">NeuroPress</span>

@@ -64,7 +64,7 @@ export default function ExplorePage() {
 
   return (
     <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-12">
-      <div className="max-w-6xl mt-6 mx-auto space-y-12">
+      <div className="w-full mt-6 mx-auto space-y-12">
         {/* Heading */}
         <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-gray-900">
           EXPLORE <span className="text-red-600">NEUROPRESS</span>
@@ -73,14 +73,14 @@ export default function ExplorePage() {
         {/* Search Input */}
         <form
           onSubmit={handleSearch}
-          className="flex justify-center gap-2 w-full sm:w-96 mx-auto"
+          className="flex justify-center gap-2 w-full mx-auto"
         >
           <input
             type="text"
             placeholder="Search blogs..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-sm sm:text-base"
+            className="flex-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-sm sm:text-base"
           />
           <button
             type="submit"

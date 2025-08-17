@@ -107,70 +107,77 @@ export default function ProfilePage() {
   }, [router, session, status]);
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-16">
-      <div className="max-w-6xl mx-auto space-y-16">
-        {/* Profile Section */}
-        <section className="bg-white shadow-md rounded-2xl p-10 flex flex-col items-center text-center border border-gray-100">
-          <div className="w-28 h-28 rounded-full bg-red-600 text-white flex items-center justify-center text-4xl font-bold mb-4 shadow-md">
-            {username.charAt(0)}
-          </div>
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-2">
-            {username}
-          </h2>
-          <p className="text-gray-600 text-lg">{email}</p>
-        </section>
+  <main className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 px-6 py-20">
+  <div className="max-w-6xl mx-auto space-y-20">
+    {/* Profile Section */}
+    <section className="bg-white shadow-lg rounded-3xl p-12 flex flex-col items-center text-center border border-gray-100 relative overflow-hidden">
+      {/* Decorative background accent */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-red-50 via-white to-gray-50 rounded-3xl"></div>
 
-        {/* Blogs Section */}
-        <section>
-          <h3 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            <span className="text-red-600">YOUR </span> BLOGS AND ARTICLES
-          </h3>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-2">
-            {blogs.map((card) => (
-              <MinimalCard
-                key={card.id}
-                className="group relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col"
-              >
-                {/* Thumbnail */}
-                <MinimalCardImage
-                  onClick={() => router.push(`/BlogPost/${card.id}`)}
-                  className="h-52 w-full object-cover"
-                  src={card.thumbnail}
-                  alt={card.title}
-                />
-
-                {/* Card Body */}
-                <div className="flex flex-col flex-grow p-5">
-                  <MinimalCardTitle className="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition">
-                    {card.title}
-                  </MinimalCardTitle>
-
-                  {/* Actions */}
-                  <div className="mt-auto flex justify-end gap-3 pt-4 border-t border-gray-100">
-                    <button
-                      className="p-2 rounded-lg hover:bg-gray-100 transition"
-                      title="Edit"
-                    >
-                      <Pencil
-                        onClick={() => router.push(`/EditBlog/${card.id}`)}
-                        className="w-5 h-5 text-gray-500"
-                      />
-                    </button>
-                    <button
-                      onClick={() => handledelete(card.id)}
-                      className="p-2 rounded-lg hover:bg-red-50 transition"
-                      title="Delete"
-                    >
-                      <Trash className="w-5 h-5 text-red-600" />
-                    </button>
-                  </div>
-                </div>
-              </MinimalCard>
-            ))}
-          </div>
-        </section>
+      {/* Avatar */}
+      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-red-600 to-red-400 text-white flex items-center justify-center text-5xl font-bold mb-6 shadow-lg ring-4 ring-red-100">
+        {username.charAt(0)}
       </div>
-    </main>
+
+      {/* Username */}
+      <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight mb-3">
+        {username}
+      </h2>
+
+      {/* Email */}
+      <p className="text-gray-600 text-lg">{email}</p>
+    </section>
+
+    {/* Blogs Section */}
+    <section>
+      <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-14 text-center">
+        <span className="text-red-600">Your</span> Blogs & Articles
+      </h3>
+
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-2">
+        {blogs.map((card) => (
+          <MinimalCard
+            key={card.id}
+            className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-red-200 transition-all duration-300 flex flex-col"
+          >
+            {/* Thumbnail */}
+            <MinimalCardImage
+              onClick={() => router.push(`/BlogPost/${card.id}`)}
+              className="h-56 w-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300"
+              src={card.thumbnail}
+              alt={card.title}
+            />
+
+            {/* Card Body */}
+            <div className="flex flex-col flex-grow p-6">
+              <MinimalCardTitle className="text-xl font-semibold text-gray-900 group-hover:text-red-600 transition">
+                {card.title}
+              </MinimalCardTitle>
+
+              {/* Actions */}
+              <div className="mt-auto flex justify-end gap-4 pt-6 border-t border-gray-100">
+                <button
+                  onClick={() => router.push(`/EditBlog/${card.id}`)}
+                  className="p-2 rounded-lg hover:bg-gray-100 transition"
+                  title="Edit"
+                >
+                  <Pencil className="w-5 h-5 text-gray-500" />
+                </button>
+                <button
+                  onClick={() => handledelete(card.id)}
+                  className="p-2 rounded-lg hover:bg-red-50 transition"
+                  title="Delete"
+                >
+                  <Trash className="w-5 h-5 text-red-600" />
+                </button>
+              </div>
+            </div>
+          </MinimalCard>
+        ))}
+      </div>
+    </section>
+  </div>
+</main>
+
   );
 }
