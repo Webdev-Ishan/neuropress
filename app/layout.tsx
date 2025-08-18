@@ -26,7 +26,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body
@@ -34,18 +33,18 @@ export default function RootLayout({
       >
         <Providers>
           <SmoothScrollProvider>
-          <Navbar />
-          {children}
-          <Footer />
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={true}
-            closeOnClick
-            pauseOnHover
-            theme="dark"
-          />
+            <Navbar />
+            {children}
+            <Footer />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick
+              pauseOnHover
+              theme="dark"
+            />
           </SmoothScrollProvider>
         </Providers>
       </body>
