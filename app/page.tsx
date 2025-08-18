@@ -27,6 +27,54 @@ export default function Home() {
         },
       });
     });
+
+    gsap.from(".box1", {
+      opacity: 0,
+      x: -50,
+      duration: 4,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".box1", // 👈 animate this section only
+        start: "top 100%", // when it enters viewport
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.from(".highlight", {
+      opacity: 0,
+      x: -50,
+      duration: 1.5,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".highlight", // 👈 animate this section only
+        start: "top 100%", // when it enters viewport
+        toggleActions: "play play none none",
+      },
+    });
+
+    gsap.from(".markeddiv", {
+      opacity: 0,
+      duration: 2,
+      x: -50,
+      ease: "power3.Out",
+      scrollTrigger: {
+        trigger: ".markeddiv", // 👈 animate this section only
+        start: "top 100%", // when it enters viewport
+        toggleActions: "play  none none",
+      },
+    });
+
+    gsap.from(".lastbox", {
+      opacity: 0,
+      duration: 1,
+      x: -50,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".lastbox",
+        start: "top 120%",
+        toggleActions: "play none none none",
+      },
+    });
   }, []);
   return (
     <div className="bg-gradient-to-b from-white to-blue-50 min-h-screen flex flex-col font-sans">
@@ -77,7 +125,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="py-16 px-6 md:px-16 flex flex-col-reverse md:flex-row items-center gap-10 section">
-        <div className="w-full md:w-1/2 text-center md:text-left">
+        <div className="w-full md:w-1/2 text-center md:text-left box1">
           <h2 className="text-3xl md:text-5xl font-bold text-red-700 mb-4">
             Share Your Ideas, Reach the World
           </h2>
@@ -126,10 +174,10 @@ export default function Home() {
             height={48}
             unoptimized
             priority
-            className="w-12 h-12 bg-red-600 text-white rounded-xl border border-red-700 p-2"
+            className="w-12 h-12 bg-red-600 text-white rounded-xl border border-red-700 p-2 highlight"
           />
         </div>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl markeddiv mx-auto">
           <MarkedDiv />
         </div>
       </section>
@@ -152,12 +200,12 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="py-20 px-6 text-center section">
+      <section className="py-20 px-6 text-center ">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
           Why choose NeuroPress?
         </h2>
         <div className="max-w-4xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-          <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+          <div className="p-6 lastbox cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
             <h3 className="text-xl font-semibold text-red-700 mb-2">
               Minimal Writing
             </h3>
@@ -165,7 +213,7 @@ export default function Home() {
               A distraction-free editor designed to keep your focus on words.
             </p>
           </div>
-          <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+          <div className="p-6 lastbox cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
             <h3 className="text-xl font-semibold text-red-700 mb-2">
               Reach Readers
             </h3>
@@ -173,7 +221,7 @@ export default function Home() {
               Share your blogs, build an audience, and inspire with your ideas.
             </p>
           </div>
-          <div className="p-6 cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+          <div className="p-6 lastbox cursor-pointer bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
             <h3 className="text-xl font-semibold text-red-700 mb-2">
               Stay Organized
             </h3>

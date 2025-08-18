@@ -35,7 +35,7 @@ export default function Navbar() {
             <button
               key={link.name}
               onClick={() => router.push(link.path)}
-              className="text-black hover:text-red-700 font-semibold cursor-pointer transition-colors"
+              className="text-black text-md font-semibold ml-2  cursor-pointer transition-all hover:text-red-700"
             >
               {link.name}
             </button>
