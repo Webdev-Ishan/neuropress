@@ -25,6 +25,32 @@ export default function Page() {
         },
       });
     });
+
+    gsap.from(".box1", {
+      opacity: 0,
+      x: -50,
+      duration: 4,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".box1", // 👈 animate this section only
+        start: "top 100%", // when it enters viewport
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.from(".lastbox", {
+      opacity: 0,
+      duration: 1.5,
+      scale: 0, // start as a dot
+      rotate: 360, // rotate while growing
+      ease: "power3.out",
+      transformOrigin: "center center", // ensures scaling happens from center
+      scrollTrigger: {
+        trigger: ".lastbox",
+        start: "top 100%",
+        toggleActions: "play none none none",
+      },
+    });
   }, []);
   return (
     <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4 py-10">
@@ -47,7 +73,7 @@ export default function Page() {
         </section>
 
         <section className="py-12 px-4 sm:px-8 md:px-16 flex flex-col-reverse md:flex-row items-center section">
-          <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+          <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0 box1">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-700 mb-4">
               Share Your Ideas, Reach the World
             </h2>
@@ -71,7 +97,7 @@ export default function Page() {
 
         {/* Features Grid Section */}
         <section className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 section">
-          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition">
+          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition lastbox">
             <BookOpen className="w-12 h-12 text-blue-600 mb-4" />
             <h2 className="text-2xl font-semibold text-black mb-2">
               Smart Learning
@@ -82,7 +108,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition">
+          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition lastbox">
             <Zap className="w-12 h-12 text-yellow-500 mb-4" />
             <h2 className="text-2xl font-semibold text-black mb-2">
               Fast & Modern
@@ -93,7 +119,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition">
+          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition lastbox">
             <Share2 className="w-12 h-12 text-green-600 mb-4" />
             <h2 className="text-2xl font-semibold text-black mb-2">
               Easy Sharing
@@ -104,7 +130,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition">
+          <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition lastbox">
             <ShieldCheck className="w-12 h-12 text-purple-600 mb-4" />
             <h2 className="text-2xl font-semibold text-black mb-2">
               Secure & Reliable
