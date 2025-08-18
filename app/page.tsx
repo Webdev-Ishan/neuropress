@@ -31,7 +31,7 @@ export default function Home() {
     gsap.from(".box1", {
       opacity: 0,
       x: -50,
-      duration: 4,
+      duration: 3,
       ease: "power3.out",
       scrollTrigger: {
         trigger: ".box1", // 👈 animate this section only
