@@ -5,7 +5,7 @@ import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Provider";
 import { ToastContainer } from "react-toastify";
-
+import SmoothScrollProvider from "@/components/LenisProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,12 +26,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
+          <SmoothScrollProvider>
           <Navbar />
           {children}
           <Footer />
@@ -44,6 +46,7 @@ export default function RootLayout({
             pauseOnHover
             theme="dark"
           />
+          </SmoothScrollProvider>
         </Providers>
       </body>
     </html>
